@@ -58,6 +58,100 @@ class Gym1 extends StatelessWidget {
                     },
                   ),
                 ),
+                const SizedBox(height: 30),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Center(
+                    child: Text(
+                      'Unleash your potential at our new gym, where cutting-edge equipment blends seamlessly with a motivating atmosphere. Join us on a journey to redefine your fitness experience, sculpt your body, and elevate your well-being',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        shadows: [
+                          Shadow(
+                            color: Colors.grey,
+                            blurRadius: 2,
+                            offset: Offset(2, 2),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                const Text('Location :',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                          color: Colors.grey,
+                          blurRadius: 2,
+                          offset: Offset(2, 2),
+                        ),
+                      ],
+                    )),
+                const SizedBox(height: 8),
+                const Text('Beirut / Salim Salam',
+                    style: TextStyle(
+                        color: Colors.deepOrange,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold)),
+                const SizedBox(height: 20),
+                const Text('Subscription :',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                          color: Colors.grey,
+                          blurRadius: 2,
+                          offset: Offset(2, 2),
+                        ),
+                      ],
+                    )),
+                const SizedBox(height: 8),
+                const Text('30\$ per month',
+                    style: TextStyle(
+                        color: Colors.deepOrange,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold)),
+                const SizedBox(height: 5),
+                const Text('320\$ per year',
+                    style: TextStyle(
+                        color: Colors.deepOrange,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold)),
+                const SizedBox(height: 20),
+                const Text('Contact US:',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      shadows: [
+                        Shadow(
+                          color: Colors.grey,
+                          blurRadius: 2,
+                          offset: Offset(2, 2),
+                        ),
+                      ],
+                    )),
+                const SizedBox(height: 8),
+                const Text('+961 82828282',
+                    style: TextStyle(
+                        color: Colors.deepOrange,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold)),
+                const SizedBox(height: 5),
+                const Text('+961 02020202',
+                    style: TextStyle(
+                        color: Colors.deepOrange,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold)),
               ],
             ),
           ),

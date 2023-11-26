@@ -43,7 +43,9 @@ class _HomeState extends State<Home> {
                         color: Colors.white,
                         fontSize: 28,
                         fontWeight: FontWeight.bold)),
-                const SizedBox(height: 400),
+                const Text('Scroll down',
+                    style: TextStyle(color: Colors.deepOrange, fontSize: 18)),
+                const SizedBox(height: 457),
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).push(
@@ -91,12 +93,12 @@ class _HomeState extends State<Home> {
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.navigate_next, size: 30), // Adjust icon size
+                        Icon(Icons.calculate, size: 30), // Adjust icon size
                         SizedBox(
                             width:
                                 5), // Add some spacing between the icon and text
                         Text(
-                          'Next',
+                          'Start your fitness Journey',
                           style: TextStyle(fontSize: 16), // Adjust text size
                         ),
                       ],
@@ -151,12 +153,13 @@ class _HomeState extends State<Home> {
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.navigate_next, size: 30), // Adjust icon size
+                        Icon(Icons.fitness_center,
+                            size: 30), // Adjust icon size
                         SizedBox(
                             width:
                                 5), // Add some spacing between the icon and text
                         Text(
-                          'Next',
+                          'Available Gyms',
                           style: TextStyle(fontSize: 16), // Adjust text size
                         ),
                       ],
