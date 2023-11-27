@@ -49,13 +49,12 @@ class Gym2 extends StatelessWidget {
                       },
                     );
                   }).toList(),
+                  // slideshow from internet
                   options: CarouselOptions(
                     autoPlay: true,
                     enlargeCenterPage: true,
                     aspectRatio: 2.0,
-                    onPageChanged: (index, reason) {
-                      // Handle page change
-                    },
+                    onPageChanged: (index, reason) {},
                   ),
                 ),
                 const SizedBox(height: 30),
@@ -152,6 +151,7 @@ class Gym2 extends StatelessWidget {
                         color: Colors.deepOrange,
                         fontSize: 18,
                         fontWeight: FontWeight.bold)),
+                const SizedBox(height: 20),
               ],
             ),
           ),

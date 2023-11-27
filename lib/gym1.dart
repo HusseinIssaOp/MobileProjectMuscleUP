@@ -53,9 +53,7 @@ class Gym1 extends StatelessWidget {
                     autoPlay: true,
                     enlargeCenterPage: true,
                     aspectRatio: 2.0,
-                    onPageChanged: (index, reason) {
-                      // Handle page change
-                    },
+                    onPageChanged: (index, reason) {},
                   ),
                 ),
                 const SizedBox(height: 30),
@@ -140,6 +138,8 @@ class Gym1 extends StatelessWidget {
                         ),
                       ],
                     )),
+
+                //lastly contact info mmm
                 const SizedBox(height: 8),
                 const Text('+961 82828282',
                     style: TextStyle(
@@ -152,6 +152,7 @@ class Gym1 extends StatelessWidget {
                         color: Colors.deepOrange,
                         fontSize: 18,
                         fontWeight: FontWeight.bold)),
+                const SizedBox(height: 20),
               ],
             ),
           ),

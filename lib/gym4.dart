@@ -53,15 +53,12 @@ class Gym4 extends StatelessWidget {
                     autoPlay: true,
                     enlargeCenterPage: true,
                     aspectRatio: 2.0,
-                    onPageChanged: (index, reason) {
-                      // Handle page change
-                    },
+                    onPageChanged: (index, reason) {},
                   ),
                 ),
                 const SizedBox(height: 30),
                 const Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: 20.0), // Adjust the value as needed
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
                   child: Center(
                     child: Text(
                       'Elevate your fitness experience at our brand-new gym, where modern amenities harmonize with expert guidance, empowering you to reach new heights of strength and vitality',
@@ -153,6 +150,7 @@ class Gym4 extends StatelessWidget {
                         color: Colors.deepOrange,
                         fontSize: 18,
                         fontWeight: FontWeight.bold)),
+                const SizedBox(height: 20),
               ],
             ),
           ),

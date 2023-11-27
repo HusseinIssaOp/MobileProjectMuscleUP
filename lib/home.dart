@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:test/allgym.dart';
 import 'package:test/calc.dart';
+
+// didnt used them again
+
 //import 'package:test/gym2.dart';
 //import 'package:test/gym3.dart';
 //import 'allgym.dart';
@@ -54,38 +57,30 @@ class _HomeState extends State<Home> {
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.black,
-                    alignment: Alignment.bottomRight, // Set text color
+                    alignment: Alignment.bottomRight,
                     padding: const EdgeInsets.symmetric(
-                        vertical: 15,
-                        horizontal:
-                            20), // Set padding to make the button smaller
+                        vertical: 15, horizontal: 20),
                     shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(20), // Set border radius
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                    elevation: 8, // Set elevation for a shadow effect
-                    shadowColor: Colors.black, // Set shadow color
-                    visualDensity:
-                        VisualDensity.standard, // Standard visual density
-                    tapTargetSize:
-                        MaterialTapTargetSize.padded, // Set tap target size
+                    elevation: 8,
+                    shadowColor: Colors.black, //shadow greaat shape
+                    visualDensity: VisualDensity.standard,
+                    tapTargetSize: MaterialTapTargetSize.padded,
                   ),
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                          20), // Set border radius for the container
+                      borderRadius: BorderRadius.circular(20),
                       gradient: const LinearGradient(
-                        colors: [
-                          Colors.orange,
-                          Colors.deepOrange
-                        ], // Gradient background
+                        colors: [Colors.orange, Colors.deepOrange],
+                        // Gradient for the deco
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.5), // Shadow color
+                          color: Colors.black.withOpacity(0.5),
                           spreadRadius: 2,
                           blurRadius: 8,
-                          offset: const Offset(0, 4), // Offset of the shadow
+                          offset: const Offset(0, 4),
                         ),
                       ],
                     ),
@@ -93,13 +88,11 @@ class _HomeState extends State<Home> {
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.calculate, size: 30), // Adjust icon size
-                        SizedBox(
-                            width:
-                                5), // Add some spacing between the icon and text
+                        Icon(Icons.calculate, size: 30),
+                        SizedBox(width: 5),
                         Text(
                           'Start your fitness Journey',
-                          style: TextStyle(fontSize: 16), // Adjust text size
+                          style: TextStyle(fontSize: 16),
                         ),
                       ],
                     ),
@@ -114,38 +107,30 @@ class _HomeState extends State<Home> {
                   style: ElevatedButton.styleFrom(
                     foregroundColor: Colors.white,
                     backgroundColor: Colors.black,
-                    alignment: Alignment.bottomRight, // Set text color
+                    alignment: Alignment.bottomRight,
                     padding: const EdgeInsets.symmetric(
-                        vertical: 15,
-                        horizontal:
-                            20), // Set padding to make the button smaller
+                        vertical: 15, horizontal: 20),
                     shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(20), // Set border radius
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                    elevation: 8, // Set elevation for a shadow effect
-                    shadowColor: Colors.black, // Set shadow color
-                    visualDensity:
-                        VisualDensity.standard, // Standard visual density
-                    tapTargetSize:
-                        MaterialTapTargetSize.padded, // Set tap target size
+                    elevation: 8,
+                    shadowColor: Colors.black,
+                    visualDensity: VisualDensity.standard,
+                    tapTargetSize: // padd in 7 pm
+                        MaterialTapTargetSize.padded,
                   ),
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                          20), // Set border radius for the container
+                      borderRadius: BorderRadius.circular(20),
                       gradient: const LinearGradient(
-                        colors: [
-                          Colors.orange,
-                          Colors.deepOrange
-                        ], // Gradient background
+                        colors: [Colors.orange, Colors.deepOrange],
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.5), // Shadow color
+                          color: Colors.black.withOpacity(0.5),
                           spreadRadius: 2,
                           blurRadius: 8,
-                          offset: const Offset(0, 4), // Offset of the shadow
+                          offset: const Offset(0, 4),
                         ),
                       ],
                     ),
@@ -153,19 +138,19 @@ class _HomeState extends State<Home> {
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.fitness_center,
-                            size: 30), // Adjust icon size
-                        SizedBox(
-                            width:
-                                5), // Add some spacing between the icon and text
+                        Icon(Icons.fitness_center, size: 30),
+                        SizedBox(width: 5),
                         Text(
                           'Available Gyms',
-                          style: TextStyle(fontSize: 16), // Adjust text size
+                          style: TextStyle(fontSize: 16),
                         ),
                       ],
                     ),
                   ),
                 ),
+
+                // new designed buttons
+
                 /*const SizedBox(height: 10),
               ElevatedButton(
                   onPressed: () {

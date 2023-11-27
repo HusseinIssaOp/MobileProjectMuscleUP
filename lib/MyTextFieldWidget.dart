@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+// media queryyy
+
 class MyTextFieldWidget extends StatelessWidget {
   final String hint;
   final Function(String) f;
@@ -24,8 +26,6 @@ class MyTextFieldWidget extends StatelessWidget {
             decoration: InputDecoration(
               border: const OutlineInputBorder(),
               hintText: hint,
-
-              //prefixIcon: const Icon(Icons.person),
             ),
             onChanged: (text) => f(text),
           )),

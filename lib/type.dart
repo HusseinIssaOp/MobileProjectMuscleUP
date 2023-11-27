@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 
 class Type {
   String name;
-
-  // determines if car is insured, default is false
-  // constructor only takes model and price. warranty and insurance are set later
   Type(this.name);
-  // toString method used to display an item in a dropdown widget
+  //to string
   @override
   String toString() {
     return name;
@@ -15,8 +12,7 @@ class Type {
 
 class MyDropdownMenuWidget extends StatefulWidget {
   const MyDropdownMenuWidget({required this.updatType, super.key});
-// below is a callback function to return the selected car to the home page
-// we will call it from the widget’s state class
+
   final Function(Type) updatType;
 
   @override
@@ -31,37 +27,46 @@ List<Type> typelist = [
 ];
 
 class _MyDropdownMenuWidgetState extends State<MyDropdownMenuWidget> {
-  Type? selectedType;
-/*
-class to represent a dropdown of cars.
-It is populated using the cars list.
-It contains a callback function called updateCar to pass the selected car back
-to the home page.
- */
+  Type? _selectedType;
+
+  Type? get selectedType => _selectedType;
+
   @override
   Widget build(BuildContext context) {
-    return DropdownMenu(
-        width: 210.0,
-        initialSelection: typelist[0], // first car to be displayed
-        onSelected: (mod) {
-          setState(() {
-            widget.updatType(mod as Type);
-            selectedType = mod;
-            Text(selectedType.toString());
-            // use widget to access widget fields from state class
-          });
-        },
-        // the list map function converts the list of cars to a list of DropdownMenuEntries
-        dropdownMenuEntries: typelist.map<DropdownMenuEntry<Type>>((Type mod) {
-          return DropdownMenuEntry(value: mod, label: mod.toString());
-        }).toList());
+    return DropdownButton<Type>(
+      value: _selectedType,
+      onChanged: (mod) {
+        setState(() {
+          widget.updatType(mod!);
+          _selectedType = mod;
+        });
+      },
+      items: [
+        const DropdownMenuItem(
+          value: null,
+          child: Text(
+            'Select Type', // this is the label gave him index 0
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+          ),
+        ),
+        // how to add a label
+        ...typelist.map<DropdownMenuItem<Type>>((Type mod) {
+          return DropdownMenuItem(value: mod, child: Text(mod.toString()));
+        }).toList(),
+      ],
+    );
   }
 
   /*@override
   String getSelectedName() {
     return selectedType?.name ?? '';
   }*/
+
+  // type not string
   Type? getSelectedType() {
-    return selectedType;
+    return _selectedType;
   }
 }
