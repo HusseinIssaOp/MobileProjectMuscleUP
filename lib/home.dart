@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:test/allgym.dart';
-import 'package:test/calc.dart';
+import 'allgym.dart';
+import 'calc.dart';
+import 'product.dart';
 
 // didnt used them again
 
@@ -16,6 +17,24 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  bool _load = false;
+
+  void update(bool success) {
+    setState(() {
+      _load = true;
+      if (!success) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(const SnackBar(content: Text('failed to load data')));
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    updateSupplies(update);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     // double screenHeight = MediaQuery.of(context).size.height;
@@ -73,7 +92,6 @@ class _HomeState extends State<Home> {
                       borderRadius: BorderRadius.circular(20),
                       gradient: const LinearGradient(
                         colors: [Colors.orange, Colors.deepOrange],
-                        // Gradient for the deco
                       ),
                       boxShadow: [
                         BoxShadow(
@@ -142,6 +160,56 @@ class _HomeState extends State<Home> {
                         SizedBox(width: 5),
                         Text(
                           'Available Gyms',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const ShowSupplies()));
+                  },
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.black,
+                    alignment: Alignment.bottomRight,
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 15, horizontal: 20),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    elevation: 8,
+                    shadowColor: Colors.black,
+                    visualDensity: VisualDensity.standard,
+                    tapTargetSize: // padd in 7 pm
+                        MaterialTapTargetSize.padded,
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      gradient: const LinearGradient(
+                        colors: [Colors.orange, Colors.deepOrange],
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.5),
+                          spreadRadius: 2,
+                          blurRadius: 8,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    padding: const EdgeInsets.all(10),
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.fitness_center, size: 30),
+                        SizedBox(width: 5),
+                        Text(
+                          'Buy Supplements',
                           style: TextStyle(fontSize: 16),
                         ),
                       ],
