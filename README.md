@@ -1,3 +1,6 @@
+# HI dr, i will push code to this repository to continue my project 2
+# i will modify in my project 1 to implement project 2
+
 # test
 
 A new Flutter project.
