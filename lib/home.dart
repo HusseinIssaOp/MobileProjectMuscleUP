@@ -206,7 +206,7 @@ class _HomeState extends State<Home> {
                     child: const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.fitness_center, size: 30),
+                        Icon(Icons.paid, size: 30),
                         SizedBox(width: 5),
                         Text(
                           'Buy Supplements',
