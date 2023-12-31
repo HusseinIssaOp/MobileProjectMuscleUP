@@ -12,11 +12,12 @@ class Supplies {
   String _name;
   int _price;
   String _img;
-  Supplies(this._id, this._name, this._price, this._img);
 
+  Supplies(this._id, this._name, this._price, this._img);
+  int get id => _id;
   @override
   String toString() {
-    return 'Name: $_name    Price: \$$_price';
+    return 'Name: $_name    Price: \$_price';
   }
 
   String get name => _name;
@@ -63,7 +64,7 @@ void main() {
   runApp(MaterialApp(
     home: Scaffold(
       appBar: AppBar(
-        title: const Text('Availabe Supplements'),
+        title: const Text('Available Supplements'),
         centerTitle: true,
         backgroundColor: Colors.black,
       ),
@@ -83,6 +84,7 @@ class _ShowSuppliesState extends State<ShowSupplies> {
   bool _isLoading = true;
   List<int> _selectedQuantities = [];
   List<CartItem> _cartItems = [];
+  List<Supplies> _filteredSupplies = [];
 
   @override
   void initState() {
@@ -92,6 +94,7 @@ class _ShowSuppliesState extends State<ShowSupplies> {
         _isLoading = false;
         _supplies.length = _supplies.length < 5 ? 5 : _supplies.length;
         _selectedQuantities = List<int>.filled(_supplies.length, 1);
+        _filteredSupplies = List.from(_supplies);
       });
     });
   }
@@ -104,6 +107,23 @@ class _ShowSuppliesState extends State<ShowSupplies> {
         centerTitle: true,
         backgroundColor: Colors.black,
         actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: _SuppliesSearchDelegate(
+                  _supplies,
+                  _filteredSupplies,
+                  (filteredSupplies) {
+                    setState(() {
+                      _filteredSupplies = filteredSupplies;
+                    });
+                  },
+                ),
+              );
+            },
+          ),
           IconButton(
             icon: Icon(Icons.refresh),
             onPressed: () {
@@ -122,7 +142,7 @@ class _ShowSuppliesState extends State<ShowSupplies> {
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                     (BuildContext context, int index) {
-                      if (index < _supplies.length) {
+                      if (index < _filteredSupplies.length) {
                         return Card(
                           margin: const EdgeInsets.all(8.0),
                           elevation: 4.0,
@@ -132,7 +152,7 @@ class _ShowSuppliesState extends State<ShowSupplies> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Image.asset(
-                                  'assets/${_supplies[index]._img}',
+                                  'assets/${_filteredSupplies[index]._img}',
                                   height: 100,
                                   width: 100,
                                   fit: BoxFit.cover,
@@ -144,7 +164,7 @@ class _ShowSuppliesState extends State<ShowSupplies> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        _supplies[index]._name,
+                                        _filteredSupplies[index]._name,
                                         style: const TextStyle(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold,
@@ -152,7 +172,7 @@ class _ShowSuppliesState extends State<ShowSupplies> {
                                       ),
                                       const SizedBox(height: 8.0),
                                       Text(
-                                        'Price: \$${_supplies[index]._price}',
+                                        'Price: \$${_filteredSupplies[index]._price}',
                                         style: const TextStyle(fontSize: 16),
                                       ),
                                       const SizedBox(height: 8.0),
@@ -189,12 +209,25 @@ class _ShowSuppliesState extends State<ShowSupplies> {
                         return const SizedBox.shrink();
                       }
                     },
-                    childCount: _supplies.length,
+                    childCount: _filteredSupplies.length,
                   ),
                 ),
               ],
             ),
-      floatingActionButton: ElevatedButton(
+      floatingActionButton: Stack(
+        children: [
+          Positioned(
+            bottom: 16.0,
+            right: 16.0,
+            child: FloatingActionButton(
+              onPressed: _viewAllProducts,
+              child: Icon(Icons.view_list),
+              backgroundColor: Colors.black,
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: ElevatedButton(
         onPressed: () {
           _cartItems.clear();
 
@@ -223,8 +256,8 @@ class _ShowSuppliesState extends State<ShowSupplies> {
             return;
           }
 
-          for (int i = 0; i < _supplies.length; i++) {
-            final selectedSupply = _supplies[i];
+          for (int i = 0; i < _filteredSupplies.length; i++) {
+            final selectedSupply = _filteredSupplies[i];
             final selectedQuantity = _selectedQuantities[i];
             if (selectedSupply != null && selectedQuantity > 0) {
               final cartItem = CartItem(selectedSupply, selectedQuantity);
@@ -244,7 +277,8 @@ class _ShowSuppliesState extends State<ShowSupplies> {
         style: ElevatedButton.styleFrom(
           primary: Colors.black,
           onPrimary: const Color.fromRGBO(255, 255, 255, 1), // Text color
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          padding: const EdgeInsets.symmetric(
+              horizontal: 24, vertical: 24), // Adjust the padding
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
@@ -258,5 +292,121 @@ class _ShowSuppliesState extends State<ShowSupplies> {
         ),
       ),
     );
+  }
+
+  void _viewAllProducts() {
+    setState(() {
+      // Create a map to store the selected quantities based on product ID
+      final Map<int, int> selectedQuantitiesMap = {};
+
+      // Set the selected quantities based on the search list
+      for (int i = 0; i < _filteredSupplies.length; i++) {
+        final selectedSupply = _filteredSupplies[i];
+        final selectedQuantity = _selectedQuantities[i];
+
+        // Store the selected quantity in the map with the product ID
+        selectedQuantitiesMap[selectedSupply.id] = selectedQuantity;
+      }
+
+      // Set the selected quantities for all available supplies
+      for (int i = 0; i < _supplies.length; i++) {
+        final supply = _supplies[i];
+
+        // Check if the product ID exists in the map
+        if (selectedQuantitiesMap.containsKey(supply.id)) {
+          // If the product is in the search list, update its quantity
+          _selectedQuantities[i] = selectedQuantitiesMap[supply.id]!;
+        } else {
+          // If not found, set the quantity to the existing value or 1
+          _selectedQuantities[i] =
+              _selectedQuantities.length > i ? _selectedQuantities[i] : 1;
+        }
+      }
+      _selectedQuantities[0] = 1;
+      // Set _filteredSupplies to be a copy of _supplies
+      _filteredSupplies = List.from(_supplies);
+    });
+  }
+
+  void _filterSupplies(String itemName) {
+    setState(() {
+      if (itemName.isNotEmpty) {
+        _filteredSupplies = _supplies
+            .where((supply) =>
+                supply.name.toLowerCase().contains(itemName.toLowerCase()))
+            .toList();
+      } else {
+        _filteredSupplies = List.from(_supplies);
+      }
+    });
+  }
+}
+
+class _SuppliesSearchDelegate extends SearchDelegate<Supplies> {
+  final List<Supplies> supplies;
+  List<Supplies> filteredSupplies;
+  final Function(List<Supplies>) onProductsSelected;
+
+  _SuppliesSearchDelegate(
+      this.supplies, this.filteredSupplies, this.onProductsSelected);
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+          showSuggestions(context);
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        onProductsSelected([]);
+        Navigator.pop(context);
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    return _buildSearchResults(query);
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return _buildSearchResults(query);
+  }
+
+  Widget _buildSearchResults(String query) {
+    final results = _filterSupplies(query);
+
+    return ListView.builder(
+      itemCount: results.length,
+      itemBuilder: (context, index) {
+        final supply = results[index];
+        return ListTile(
+          title: Text(supply.name),
+          onTap: () {
+            onProductsSelected([supply]);
+            close(context, supply);
+          },
+        );
+      },
+    );
+  }
+
+  List<Supplies> _filterSupplies(String query) {
+    return supplies
+        .where(
+          (supply) => supply.name.toLowerCase().contains(query.toLowerCase()),
+        )
+        .toList();
   }
 }
