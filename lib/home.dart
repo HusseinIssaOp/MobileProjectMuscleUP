@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'allgym.dart';
 import 'calc.dart';
 import 'product.dart';
+import 'rating_page.dart';
+// import 'signup.dart';
+// import 'login.dart';
 
 // didnt used them again
 
@@ -48,6 +51,38 @@ class _HomeState extends State<Home> {
           title: const Text('MuscleUP'),
           centerTitle: true,
           backgroundColor: Colors.black,
+          actions: [
+            IconButton(
+              icon: Icon(
+                  Icons.star), // Use a star icon or any other icon you prefer
+              onPressed: () {
+                // Navigate to the RatingPage when the icon is pressed
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RatingPage()),
+                );
+              },
+            ),
+
+            // IconButton(
+            //   onPressed: () {
+            //     Navigator.of(context).push(MaterialPageRoute(
+            //       builder: (context) => SignUpPage(),
+            //     ));
+            //   },
+            //   icon: const Icon(Icons.person_add),
+            // ),
+            // IconButton(
+            //   onPressed: () {
+            //     // Navigate to the login page
+            //     Navigator.of(context).push(MaterialPageRoute(
+            //       builder: (context) =>
+            //           LoginPage(), // Assuming LoginPage is your login page
+            //     ));
+            //   },
+            //   icon: const Icon(Icons.login),
+            // ),
+          ],
         ),
         body: ListView(children: [
           Container(

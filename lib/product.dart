@@ -276,9 +276,8 @@ class _ShowSuppliesState extends State<ShowSupplies> {
         },
         style: ElevatedButton.styleFrom(
           primary: Colors.black,
-          onPrimary: const Color.fromRGBO(255, 255, 255, 1), // Text color
-          padding: const EdgeInsets.symmetric(
-              horizontal: 24, vertical: 24), // Adjust the padding
+          onPrimary: const Color.fromRGBO(255, 255, 255, 1),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8.0),
           ),
@@ -296,34 +295,26 @@ class _ShowSuppliesState extends State<ShowSupplies> {
 
   void _viewAllProducts() {
     setState(() {
-      // Create a map to store the selected quantities based on product ID
       final Map<int, int> selectedQuantitiesMap = {};
 
-      // Set the selected quantities based on the search list
       for (int i = 0; i < _filteredSupplies.length; i++) {
         final selectedSupply = _filteredSupplies[i];
         final selectedQuantity = _selectedQuantities[i];
 
-        // Store the selected quantity in the map with the product ID
         selectedQuantitiesMap[selectedSupply.id] = selectedQuantity;
       }
 
-      // Set the selected quantities for all available supplies
       for (int i = 0; i < _supplies.length; i++) {
         final supply = _supplies[i];
 
-        // Check if the product ID exists in the map
         if (selectedQuantitiesMap.containsKey(supply.id)) {
-          // If the product is in the search list, update its quantity
           _selectedQuantities[i] = selectedQuantitiesMap[supply.id]!;
         } else {
-          // If not found, set the quantity to the existing value or 1
           _selectedQuantities[i] =
               _selectedQuantities.length > i ? _selectedQuantities[i] : 1;
         }
       }
       _selectedQuantities[0] = 1;
-      // Set _filteredSupplies to be a copy of _supplies
       _filteredSupplies = List.from(_supplies);
     });
   }
